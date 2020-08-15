@@ -1,0 +1,27 @@
+body{
+    padding: 0px;
+    margin: 0px;
+    font-family: 'Roboto', sans-serif;
+}
+.forum
+{
+    width: 25%;
+    margin-left: 35%;
+    margin-right: 35%;
+    margin-top: 10%;
+}
+.section
+{
+    max-width: 60%;
+    max-height: 100%;
+    margin: auto;
+    margin-top: 2%;
+    background-color: #f5fffa;   
+    padding: 2%;
+    border: 2px solid #b7e2f0;
+    border-bottom-style: none;
+    border-top-style: none;
+}
+.table, th, td {
+    border: 1px solid black;
+}
