@@ -20,7 +20,7 @@ session_start();
 
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="">Discussion Forum</a>
+  <a class="navbar-brand" href="about.php">Discussion Forum</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -92,8 +92,7 @@ session_start();
 
 <tr>
   <th>S.No.</th>
-  <th>Question Id</th>
-  <th>Username</th>
+  <th>Question By</th>
   <th>Questions Asked</th>
   <th></th>
 </tr>
@@ -124,7 +123,7 @@ $conn=new mysqli($dbservername,$dbusername,$dbpassword,$dbname);
     while($row = $result->fetch_assoc()) 
     {
       $id=$row["qid"];
-      echo "<tr>"."<td>".$sr."</td>".""."<td>".$row["qid"]."</td>"."<td>".$row["username"]."</td>"."<td>".$row["ques"]."</td>"."<td>"."<form method='post' action='show.php'><input type='hidden' name='id' value='$id'><input type='submit' value='See answers'></form>"."</td>"."</tr>";
+      echo "<tr>"."<td>".$sr."</td>"."<td>".$row["username"]."</td>"."<td>".$row["ques"]."</td>"."<td>"."<form method='POST' action='show.php'><input type='hidden' name='id' value='$id'><input type='submit' value='See answers'></form>"."</td>"."</tr>";
       $sr++;
     }
   }

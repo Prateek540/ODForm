@@ -19,7 +19,7 @@ session_start();
 
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="">Discussion Forum</a>
+  <a class="navbar-brand" href="about.php">Discussion Forum</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -31,7 +31,6 @@ session_start();
     </ul>
   </div>
 </nav>
-
 
 <h2 style="text-align: center; margin-top: 5vh"><i class="fas fa-users-cog 5x"></i> Admin Login</h2>
 

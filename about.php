@@ -2,7 +2,6 @@
 session_start();
 ?>
 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,10 +12,9 @@ session_start();
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css" integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="style.css">
     <link rel="icon" type="image/png" href="images/logo.png">
-    <title>Q with A</title>
+    <title>About Us</title>
 </head>
 <body>
-
 
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -29,12 +27,6 @@ session_start();
   <ul class="navbar-nav">
       <li class="nav-item active">
         <a class="nav-link" href="index.php">Home <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="questions.php">Ask Questions</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="answers.php">Give Answers</a>
       </li>
     </ul>
 
@@ -86,75 +78,15 @@ session_start();
 
 
 
+  <h1>Online Discussion Forum</h1>
+  <h5>Developed By Prateek Pathak</h5>
 
-<table class="table">
 
-<tr>
-    <th>Question</th>
-    <th>Asked By</th>
-</tr>
+  <h5>You can email us for suggestions.</h5>
 
 
 
 
-
-
-<?php
-
-
-require 'db.php';
-
-$id=$_POST['id'];
-
-
-$conn=new mysqli($dbservername,$dbusername,$dbpassword,$dbname);
-
-if ($conn->connect_error)
-{
-  die("Connection failed: " . $conn->connect_error);
-}
-
-
-$query="SELECT question.ques, user.username FROM user,question WHERE qid='$id' AND idq=id LIMIT 1";
-
-$result=$conn->query($query);
-
-$row=$result->fetch_assoc();
-
-        if ($conn->connect_error)
-        {
-          die("Connection failed: " . $conn->connect_error);
-        }
-
-        if($row > 0)
-        {
-        echo "<tr>"."<td>".$row['ques']."</td>"."<td>".$row['username']."</td>"."</tr>";
-        }
-        else
-        {
-
-        }
-
-
-
-
-
-?>
-
-
-
-</table>
-
-
-
-
-
-<table class="table">
-
-<tr>
-  <th>Answers</th>
-  <th>Answered By</th>
-</tr>
 
 
 
@@ -162,58 +94,23 @@ $row=$result->fetch_assoc();
 </div>
 
 
-
-<?php
-
-
-
-require 'db.php';
-
-$id=$_POST['id'];
-
-
-$conn=new mysqli($dbservername,$dbusername,$dbpassword,$dbname);
-
-if ($conn->connect_error)
-{
-  die("Connection failed: " . $conn->connect_error);
-}
-
-
-$query="SELECT answer.ans, user.username FROM user,answer WHERE answer.qid='$id' AND answer.ida=user.id";
-
-$result=$conn->query($query);
-if($result)
-{
-
-        if ($conn->connect_error)
-        {
-          die("Connection failed: " . $conn->connect_error);
-        }
-
-        if($row > 0)
-        {
-        while($row = $result->fetch_assoc()) 
-        {
-        echo "<tr>"."<td>".$row['ans']."</td>"."<td>".$row['username']."</td>"."</tr>";
-        }
-        }   
-        else
-        {
-
-        }
-    }
+<div class="forum">
+<form method="POST" action="<?=$_SERVER['PHP_SELF'];?>">
+  <div class="form-group">
+    <label for="exampleInputEmail1">Email address</label>
+    <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+    </div>
+  <div class="form-group">
+    <label for="answer">Suggestions</label>
+    <textarea name="ans" id="" cols="50" rows="10" class="form-control"></textarea>
+  </div>
+  <button type="submit" class="btn btn-primary" name="submit">Submit</button>
+</form>
+</div>
 
 
 
 
-
-
-
-
-?>
-
-</table>
 
 
 
@@ -229,3 +126,6 @@ if($result)
 
 </body>
 </html>
+
+
+

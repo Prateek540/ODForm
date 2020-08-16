@@ -20,7 +20,7 @@ session_start();
 
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="">Discussion Forum</a>
+  <a class="navbar-brand" href="about.php">Discussion Forum</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -81,29 +81,67 @@ session_start();
 
 
 
+<div class="section">
 
-<div class="forum">
-<form method="POST" action="<?=$_SERVER['PHP_SELF'];?>">
-<div class="form-group">
-    <label for="quesid">Enter question Id</label>
-    <input type="qid" name="qid" class="form-control" id="exampleInputPassword1" placeholder="question id">
-  </div>
-  <div class="form-group">
-    <label for="answer">Answer</label>
-    <textarea name="ans" id="" cols="50" rows="10" class="form-control"></textarea>
-  </div>
-  <button type="submit" class="btn btn-primary" name="submit">Submit</button>
-</form>
+
+
+
+
+<table class="table">
+
+<tr>
+  <th>S.No.</th>
+  <th>Question By</>
+  <th>Questions Asked</th>
+  <th></th>
+</tr>
+
+
+
+
+<?php
+
+require 'db.php';
+
+
+$conn=new mysqli($dbservername,$dbusername,$dbpassword,$dbname);
+
+  if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+  }
+
+  $query="SELECT user.username, question.ques, question.qid FROM user, question WHERE user.id=question.idq";
+
+  $result=$conn->query($query);
+
+  if($result)
+  {
+  if ($result->num_rows > 0)
+   {
+     $sr=1;
+    while($row = $result->fetch_assoc()) 
+    {
+      $id=$row["qid"];
+      echo "<tr>"."<td>".$sr."</td>"."<td>".$row["username"]."</td>"."<td>".$row["ques"]."</td>"."<td>"."<form method='POST' action='giveans.php'><input type='hidden' name='id' value='$id'><input type='submit' value='Give answer'></form>"."</td>"."</tr>";
+      $sr++;
+    }
+  }
+}
+  
+    else
+    {
+      echo "<h5>No Question</h5>";
+    }
+
+
+?>
+
+</table>
+
+
+
+
 </div>
-
-
-
-
-
-
-
-
-
 
 
 
@@ -120,53 +158,3 @@ session_start();
 
 
 
-<?php
-
-require 'db.php';
- 
-if(isset($_POST['submit']))
-{
-    if(isset($_SESSION['username']))
-    {
-      $message=$_POST['ans'];
-      $qid=$_POST['qid'];
-      $username=$_SESSION['username'];
-      if($message=='')
-      echo '<script type="text/javascript">ansempty();</script>';
-      else
-      {
-        $conn=new mysqli($dbservername,$dbusername,$dbpassword,$dbname);
-
-        if ($conn->connect_error)
-        {
-          die("Connection failed: " . $conn->connect_error);
-        }
-        $query="SELECT id FROM user WHERE username='$username' LIMIT 1";
-        $result=$conn->query($query);
-        $row=$result->fetch_assoc();
-        $uid=$row['id'];
-
-        $query="INSERT INTO answer(qid, ida, ans) VALUES('$qid','$uid','$message')";
-        if($conn->query($query))
-        {
-            echo '<script type="text/javascript">anssubmit();</script>';
-        }
-        else
-        {
-           echo '<script type="text/javascript">unans();</script>';
-        }
-
-      }
-
-       
-    }
-    else
-    {
-        echo '<script type="text/javascript">anslog();</script>';
-
-    }
-}
-
-
-
-?>

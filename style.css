@@ -2,6 +2,9 @@ body{
     padding: 0px;
     margin: 0px;
     font-family: 'Roboto', sans-serif;
+    background-image: linear-gradient(rgba(0,0,0,0.2),rgba(0,0,0,0.2)),url('images/back.jpg');
+    background-size: cover;
+    background-position: center;
 }
 .forum
 {
@@ -9,6 +12,7 @@ body{
     margin-left: 35%;
     margin-right: 35%;
     margin-top: 10%;
+    margin-bottom: 20%;
 }
 .section
 {
