@@ -24,7 +24,7 @@ if(isset($_SESSION['adminname']))
 
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="about.php">Discussion Forum</a>
+  <a class="navbar-brand" href="adminsection.php">Discussion Forum</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -32,13 +32,13 @@ if(isset($_SESSION['adminname']))
     
   <ul class="navbar-nav">
       <li class="nav-item active">
-        <a class="nav-link" href="logout.php">Home <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="musers.php">Manage Users <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Edit Questions</a>
+        <a class="nav-link" href="eques.php">Edit Questions</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Edit Answers</a>
+        <a class="nav-link" href="eans.php">Edit Answers</a>
       </li>
     </ul>
 
@@ -62,12 +62,69 @@ if(isset($_SESSION['adminname']))
 
 
 
+<div class="section">
+
+
+
+
+
+<table class="table">
+
+<tr>
+  <th>S. No.</th>
+  <th>E-mail</th>
+  <th>Suggestion</th>
+  <th></th>
+</tr>
+
+<?php
+
+require 'db.php';
+
+
+$conn=new mysqli($dbservername,$dbusername,$dbpassword,$dbname);
+
+  if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+  }
+
+  $query="SELECT id, email, message FROM suggestion";
+
+  $result=$conn->query($query);
+
+  if($result)
+  {
+  if ($result->num_rows > 0)
+   {
+     $sr=1;
+    while($row = $result->fetch_assoc()) 
+    {
+      $id=$row['id'];
+      echo "<tr>"."<td>".$sr."</td>"."<td>".$row["email"]."</td>"."<td>".$row["message"]."</td>"."<td>"."<form method='POST' action='dsugg.php'><input type='hidden' name='id' value='$id'><input type='submit' value='Delete Suggestion'></form>"."</td>"."</tr>";
+      $sr++;
+    }
+  }
+  else
+  {
+    echo "<h5>No Suggestion Yet</h5>";
+  }
+}
+  
+   
+
+
+?>
+
+</table>
 
 
 
 
 
 
+
+
+</div>
 
 
 

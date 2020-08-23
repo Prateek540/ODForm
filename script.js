@@ -93,3 +93,59 @@ function unans()
     alert("Answer not submitted try again");
     location.replace("answers.php");
 }
+function suggunfill()
+{
+    alert("Please enter full details.");
+    location.replace("about.php");
+}
+function aboutsubmit()
+{
+    alert("Suggestions are submitted");
+    location.replace("index.php");
+}
+function notabout()
+{
+    alert("Not submitted");
+    location.replace("about.php");
+}
+function delsug()
+{
+    alert("Suggestion deleted");
+    location.replace("adminsection.php");
+}
+function undelsug()
+{
+    alert("Suggestion can't be deletd.");
+    location.replace("adminsection.php");
+}
+function deluse()
+{
+    alert("User is deleted");
+    location.replace("musers.php");
+
+}
+function undelsue()
+{
+    alert("User cannot be deleted");
+    location.replace("musers.php");
+}
+function delq()
+{
+    alert("Question deleted");
+    location.replace("eques.php");
+}
+function undelq()
+{
+    alert("Question can't be deleted");
+    location.replace("eques.php");
+}
+function dela()
+{
+    alert("Answer deleted");
+    location.replace("eans.php");
+}
+function undela()
+{
+    alert("Answer can't be deleted");
+    location.replace("eans.php");
+}

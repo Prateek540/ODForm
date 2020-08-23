@@ -159,7 +159,7 @@ $row=$result->fetch_assoc();
 
 
 
-</div>
+
 
 
 
@@ -207,19 +207,26 @@ if($result)
 
 
 
+?>
+
+
+</div>
+
+</table>
+
+
+<?php
+
+
+$id=$_POST['id'];
+
+
+echo "<form method='POST' action='pdf.php'><input type='hidden' name='id' value='$id'><input type='submit' value='Generate PDF'></form>";
 
 
 
 
 ?>
-
-</table>
-
-
-
-
-
-
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>

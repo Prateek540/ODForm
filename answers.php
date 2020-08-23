@@ -139,8 +139,6 @@ $conn=new mysqli($dbservername,$dbusername,$dbpassword,$dbname);
 </table>
 
 
-
-
 </div>
 
 

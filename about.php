@@ -78,11 +78,8 @@ session_start();
 
 
 
-  <h1>Online Discussion Forum</h1>
-  <h5>Developed By Prateek Pathak</h5>
-
-
-  <h5>You can email us for suggestions.</h5>
+  <h2 style="text-align: center;">Online Discussion Forum</h2>
+  <h5 style="text-align: center;">E-mail us for suggestions.</h5>
 
 
 
@@ -102,7 +99,7 @@ session_start();
     </div>
   <div class="form-group">
     <label for="answer">Suggestions</label>
-    <textarea name="ans" id="" cols="50" rows="10" class="form-control"></textarea>
+    <textarea name="suggestion" id="" cols="50" rows="10" class="form-control"></textarea>
   </div>
   <button type="submit" class="btn btn-primary" name="submit">Submit</button>
 </form>
@@ -129,3 +126,44 @@ session_start();
 
 
 
+<?php
+
+require 'db.php';
+
+if(isset($_POST['submit']))
+{
+  $email=$_POST['email'];
+  $message=$_POST['suggestion'];
+
+
+  if($email=='' || $message=='')
+  {
+    echo '<script type="text/javascript">suggunfill();</script>';
+    exit();
+  }
+
+  $conn=new mysqli($dbservername,$dbusername,$dbpassword,$dbname);
+
+  if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+  }
+
+  $query="INSERT INTO suggestion(email, message) VALUES('".$_POST['email']."','".$_POST['suggestion']."')";
+  
+  if($conn->query($query))
+  {
+    echo '<script type="text/javascript">aboutsubmit();</script>';
+  }
+  else
+  {
+    echo '<script type="text/javascript">notabout();</script>';
+  }
+  
+
+
+
+
+
+}    
+
+?>
